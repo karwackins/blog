@@ -1,0 +1,48 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    Kot ma kompilator.
+    {{ page }}
+    <hr />
+    <a href="">link</a>
+    <a href="{{ url('homepage') }}">link2</a>
+
+    {#{{ dump(tablica) }}#}
+    {{ komentarz|upper|raw() }}
+<hr/>
+
+   Długosc tablicy {{ tablica|length }}
+<hr/>
+    {% if tablica is empty %}
+        tablica jest pusta
+    {% else %}
+        cos jest w tablicy
+    {% endif %}
+
+<hr/>
+    {% for element in tablica2 %}
+        {{ element }} <br />
+        {% else %}
+        Brak danych
+    {% endfor %}
+
+    <hr/>
+    {% for klucz, element in tablica %}
+      {{ klucz }} -> {{ element }} <br />
+    {% endfor %}
+
+    <hr/>
+    {% for element in tablica2 %}
+        {{ element }} <br />
+    {% endfor %}
+
+    <hr/>
+    {% for element in tablica %}
+        {{ element }} <br />
+    {% endfor %}
+
+{% endblock %}
+
+{% block title %}
+    yoyoyo
+{% endblock %}

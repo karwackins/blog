@@ -1,0 +1,25 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+    {% for post in pagination %}
+        <div class="post-preview">
+            <a href="{{ url('app_front_post_show',{slug:post.slug}) }}">
+                <h2 class="post-title">
+                    {#{{ post.getTitle() }}#}
+                    {{ post.title }}
+                </h2>
+                <h3 class="post-subtitle">
+                    {{ post.content|truncate(50, true) }}
+                </h3>
+                <h4>{{ post.category.name }}</h4>
+            </a>
+            <p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on {{ post.createdAt|date('d-m-Y H:i:s') }}</p>
+        </div>
+         {% if not loop.last %}
+            <hr>
+         {% endif %}
+    {% endfor %}
+    {{ knp_pagination_render(pagination, "pagination.html.twig") }}
+
+{% endblock %}

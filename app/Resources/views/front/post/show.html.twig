@@ -1,0 +1,50 @@
+{% extends "base.html.twig" %}
+
+{% block header %}
+          {{ post.title }}
+{% endblock %}
+
+{% block sub_header %}
+        {{ post.createdAt|date("d-m-Y H:i:s") }}
+{% endblock %}
+
+{% block body %}
+
+    <div>
+        {{ post.content }}
+    </div>
+{% if post.tags is not empty %}
+    <div>
+        <h3>Tags</h3>
+
+        {#{% for tag in post.tags %}#}
+            {#{{ tag.name }}#}
+        {#{% endfor %}#}
+
+        {{ post.tags|join(', ') }}
+    </div>
+    {% endif %}
+
+    <div>
+        <h3>Komentarze</h3>
+        {% for comment in post.comments %}
+        <div>
+            <p>{{ comment.content }}</p>
+            <small>Comment by {{ comment.name }}, {{ comment.createdAt|date("d-m-Y H:i:s") }}</small>
+        </div>
+        {% else %}
+        Brak komentarzy
+        {% endfor %}
+        <h3>Dodaj komentarz</h3>
+
+        {#{{ form(form) }}#}
+        {{ form_start(form) }}
+            {{ form_row(form.name) }}
+            {{ form_row(form.email) }}
+            {{ form_row(form.content) }}
+        <input type="submit" class="btn btn-primary" value="Dodaj komentarz" />
+        {{ form_end(form) }}
+
+    </div>
+
+{% endblock %}

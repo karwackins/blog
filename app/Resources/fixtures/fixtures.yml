@@ -1,0 +1,27 @@
+AppBundle\Entity\Category:
+    category_{1..2}:
+      name: <sentence()>
+
+AppBundle\Entity\Tag:
+    tag_{1..20}:
+      name: <word()>
+
+AppBundle\Entity\Post:
+    post_{1..100}:
+      title: <sentence()>
+      content: <realtext(2000)>
+      status: <randomElement([10,20])>
+      createdAt: <dateTime()>
+      category: '@category_*'
+      tags:
+          - '@tag_<numberBetween(1,10)>'
+          - '@tag_<numberBetween(11,20)>'
+
+AppBundle\Entity\Comment:
+    comment_{1..1000}:
+      name: <name()>
+      email: <email()>
+      content: <realText(400)>
+      ip: <ipv4()>
+      createdAt: <dateTime()>
+      post: '@post_*'
